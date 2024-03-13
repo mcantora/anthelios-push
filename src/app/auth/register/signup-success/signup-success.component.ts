@@ -6,7 +6,6 @@ import { DialogModule } from 'primeng/dialog';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { environment } from 'environments/environment';
 //@ts-ignore
-import { messaging } from 'firebase-config';
 
 @Component({
   selector: 'app-signup-success',
@@ -31,11 +30,13 @@ export class SignUpSuccessComponent implements OnInit {
 
   requestPermission() {
     const messaging = getMessaging();
-    
-    console.log('Requesting permission...');
+
+    //console.log('Requesting permission...');
     Notification.requestPermission().then((permission) => {
+
       if (permission === 'granted') {
-        console.log('Notification permission granted.');
+        //console.log('Notification permission granted.');
+
         getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
           .then((currentToken) => {
             if (currentToken) {
@@ -52,23 +53,6 @@ export class SignUpSuccessComponent implements OnInit {
       }
     })
   }
-  // requestPermission() {
-  //   const messaging = getMessaging();
-
-  //   getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
-  //     .then((currentToken) => {
-  //       if (currentToken) {
-  //         console.log(currentToken)
-  //       } else {
-  //         console.log(
-  //           'No registration token available. Request permission to generate one.'
-  //         );
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log('An error occurred while retrieving token. ', err);
-  //     });
-  // }
 
   listenForMessages() {
     const messaging = getMessaging();

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     if (tokenStorage()) {
@@ -44,30 +44,15 @@ export class LoginComponent implements OnInit {
     this.password = newValue;
   }
 
-  // requestPermission() {
-  //   const messaging = getMessaging();
-
-  //   getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
-  //     .then((currentToken) => {
-  //       if (currentToken) {
-  //       } else {
-  //         console.log(
-  //           'No registration token available. Request permission to generate one.'
-  //         );
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log('An error occurred while retrieving token. ', err);
-  //     });
-  // }
-
   requestPermission() {
     const messaging = getMessaging();
-    
-    console.log('Requesting permission...');
+
+    //console.log('Requesting permission...');
+
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
-        console.log('Notification permission granted.');
+
+        //console.log('Notification permission granted.');
         getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
           .then((currentToken) => {
             if (currentToken) {

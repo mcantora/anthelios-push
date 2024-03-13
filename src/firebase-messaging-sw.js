@@ -1,41 +1,5 @@
-// import { initializeApp } from "firebase/app";
-// import { getMessaging } from "firebase/messaging/sw";
-
-// const firebaseApp = initializeApp({
-//   apiKey: "AIzaSyAn_eNxjBILtjtjt7kqWPdCMNvnLAT8KcM",
-//   authDomain: "anthelios-test-notifications.firebaseapp.com",
-//   projectId: "anthelios-test-notifications",
-//   storageBucket: "anthelios-test-notifications.appspot.com",
-//   messagingSenderId: "89838469457",
-//   appId: "1:89838469457:web:4f8c6cd1f2389ebf301370",
-//   databaseURL: "https://anthelios-test-notifications.firebaseio.com",
-// });
-
-// export const messaging = getMessaging(firebaseApp);
-
-// import { onBackgroundMessage } from "firebase/messaging/sw";
-
-// onBackgroundMessage(messaging, (payload) => {
-//   console.log(
-//     "[firebase-messaging-sw.js] Received background message ",
-//     payload
-//   );
-//   // Customize notification here
-//   const notificationTitle = "Background Message Title";
-//   const notificationOptions = {
-//     body: "Background Message body.",
-//     icon: "/firebase-logo.png",
-//   };
-
-//   self.registration.showNotification(notificationTitle, notificationOptions);
-// });
-
-importScripts(
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"
-);
-importScripts(
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"
-);
+importScripts("https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js");
+importScripts("https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js");
 
 firebase.initializeApp({
   apiKey: "AIzaSyApTkEUlCPLmxSbX0i3shEKzg_5GoZ3EQE",
@@ -50,7 +14,6 @@ const messaging = firebase.messaging();
 
 messaging.onMessage((payload) => {
   console.log('Message received. ', payload);
-  // ...
 });
 
 messaging.onBackgroundMessage((payload) => {
@@ -58,7 +21,6 @@ messaging.onBackgroundMessage((payload) => {
     '[firebase-messaging-sw.js] Received background message ',
     payload
   );
-  // Customize notification here
   const notificationTitle = 'Background Message Title';
   const notificationOptions = {
     body: 'Background Message body.',
