@@ -22,7 +22,7 @@ export class SignUpSuccessComponent implements OnInit {
   redirectUrl: string = environment.production
     ? 'https://antheliosleague.com'
     : 'https://pre.antheliosleague.com';
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.requestPermission();
@@ -30,22 +30,43 @@ export class SignUpSuccessComponent implements OnInit {
   }
 
   requestPermission() {
-    const messaging = getMessaging();
-
-    getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
-      .then((currentToken) => {
-        if (currentToken) {
-          console.log(currentToken)
-        } else {
-          console.log(
-            'No registration token available. Request permission to generate one.'
-          );
-        }
-      })
-      .catch((err) => {
-        console.log('An error occurred while retrieving token. ', err);
-      });
+    console.log('Requesting permission...');
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+        getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
+          .then((currentToken) => {
+            if (currentToken) {
+              console.log(currentToken)
+            } else {
+              console.log(
+                'No registration token available. Request permission to generate one.'
+              );
+            }
+          })
+          .catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+          });
+      }
+    })
   }
+  // requestPermission() {
+  //   const messaging = getMessaging();
+
+  //   getToken(messaging, { vapidKey: environment.firebaseConfig.vapidKey })
+  //     .then((currentToken) => {
+  //       if (currentToken) {
+  //         console.log(currentToken)
+  //       } else {
+  //         console.log(
+  //           'No registration token available. Request permission to generate one.'
+  //         );
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log('An error occurred while retrieving token. ', err);
+  //     });
+  // }
 
   listenForMessages() {
     const messaging = getMessaging();
