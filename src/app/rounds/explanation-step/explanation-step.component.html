@@ -1,0 +1,12 @@
+<app-round-card
+  label="EXPLICACIÓN"
+  [buttonLabel]="hasQueryParam ? 'Siguiente' : 'Volver'"
+  (onClickButton)="hasQueryParam ? handleClick() : handleFinish()"
+  [classCard]="'container-cards'"
+>
+  <div class="content">
+    <p>
+      {{ round?.roundCase?.question?.explanation }}
+    </p>
+  </div>
+</app-round-card>

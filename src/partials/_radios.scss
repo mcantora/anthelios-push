@@ -1,0 +1,23 @@
+@import "./colors";
+
+p-radiobutton {
+  
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+  .p-radiobutton-label {
+    font-size: 1.2rem;
+  }
+
+  .p-radiobutton-box {
+    background-color: $secondary-color-dark;
+    &.p-highlight {
+      background: $darkblue-gradient;
+      & .p-radiobutton-icon {
+        background: $darkblue-gradient;
+        rotate: 180deg;
+      }
+    }
+  }
+}

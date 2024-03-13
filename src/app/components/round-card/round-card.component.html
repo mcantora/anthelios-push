@@ -1,0 +1,20 @@
+<div class="blue-card {{ classCard }}">
+  <div class="label-section">
+    <h3>{{ label }}</h3>
+    <h4>{{ secondaryLabel }}</h4>
+  </div>
+
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="footer">
+    <app-button
+      [text]="buttonLabel"
+      [classBtn]="'btn-primary btn-app'"
+      (click)="handleClick()"
+      [disable]="disabledButton"
+      [loading]="loadingButton"
+    />
+  </div>
+</div>
