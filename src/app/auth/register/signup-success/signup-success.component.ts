@@ -30,6 +30,8 @@ export class SignUpSuccessComponent implements OnInit {
   }
 
   requestPermission() {
+    const messaging = getMessaging();
+    
     console.log('Requesting permission...');
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
